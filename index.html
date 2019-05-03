@@ -14,6 +14,13 @@
       font-size: 20px;
       margin-bottom: 30px;
     }
+    .explaination {
+      display: inline;
+    }
+    button {
+      display: inline;
+      font-size: 25px;
+    }
     .password {
       text-decoration: underline;
       font-size: 20px;
@@ -36,7 +43,8 @@
   </style>
 </head>
 <body>
-  <h1>This password generator works fully in your browser (any that has JS enabled) to avoid any chance of your passwords ever leaking or being tracked</h1>
+  <h1 class="explaination">This password generator works fully in your browser (any that has JS enabled) to avoid any chance of your passwords ever leaking or being tracked</h1>
+  <button id="no-spaces">No Spaces</button>
   <h1>Click any password to copy it!</h1>
   <div id="passwords"></div>
   <input type="text" class="hide" id="copyable" />
@@ -2130,6 +2138,12 @@
           }, 1000);
         })
       })
+
+      document.getElementById("no-spaces").addEventListener("click", function(event) {
+          passwords.forEach(function (password) {
+            password.innerText = password.innerText.replace(/\s/g, "");
+          })
+        })
     })();
   </script>
 </body>
