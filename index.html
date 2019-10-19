@@ -2118,6 +2118,7 @@
         var p = document.createElement("p");
         p.innerText = password;
         p.classList.add("password");
+        p.setAttribute("data", password);
         passwords.push(p);
         passwordsDiv.appendChild(p);
       }
@@ -2139,11 +2140,22 @@
         })
       })
 
-      document.getElementById("no-spaces").addEventListener("click", function(event) {
+      var hasSpaces = true;
+      var noSpaces = document.getElementById("no-spaces");
+      noSpaces.addEventListener("click", function(event) {
+        if (hasSpaces) {
           passwords.forEach(function (password) {
-            password.innerText = password.innerText.replace(/\s/g, "");
+            password.innerText = password.getAttribute("data").replace(/\s/g, "");
           })
-        })
+          noSpaces.innerText = "Add Spaces";
+        } else {
+          passwords.forEach(function (password) {
+            password.innerText = password.getAttribute("data");
+          })
+          noSpaces.innerText = "Removes Spaces";
+        }
+        hasSpaces = !hasSpaces;
+      })
     })();
   </script>
 </body>
